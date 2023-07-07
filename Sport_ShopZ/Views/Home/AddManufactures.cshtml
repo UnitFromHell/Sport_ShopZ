@@ -1,0 +1,45 @@
+﻿@model SportShopAPI.Models.Manufacture
+@{
+    Layout = "_Layout"; ViewBag.Title = "Add a Shop";
+}
+
+<h2>Add a Manufacture <a asp-action="Manufacture" class="btn btn-sm btn-secondary">Back</a></h2>
+<form asp-action="AddManufactures" method="post">
+    <div class="form-group">
+        <label for="Name">Country:</label>
+        <input class="form-control" name="Country" />
+    </div>
+    <div class="form-group">
+        <label for="Name">Company_Name:</label>
+        <input class="form-control" name="CompanyName" />
+    </div>
+    
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Add</button>
+    </div>
+</form>
+
+<h3 class="alert">@ViewBag.Result</h3>
+
+@if (Model != null)
+{
+    <h2>Product</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Country</th>
+                <th>CompanyName</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.IdManufacture</td>
+                <td>@Model.Country</td>
+                <td>@Model.CompanyName</td>
+               
+            </tr>
+        </tbody>
+    </table>
+}

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SportShopAPI.Models.Product>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout"; ViewBag.Title = "All Products";
+}
+
+<h2>Товары</h2>
+<a asp-action="AddProducts" class="btn btn-sm btn-primary">Добавить товар</a>
+<a asp-action="GetProducts" class="btn btn-sm btn-secondary">Получить товар</a>
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+              <th>ID</th>
+                <th>ProductName</th>
+                <th>ProductCost</th>
+                <th>Image</th>
+                <th>ProductTypeId</th>
+                <th>ManufactureId</th>
+                 <th>Update</th>
+                <th>Delete</th>
+                
+                
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                 <td>@r.IdProduct</td>
+                <td>@r.ProductName</td>
+                <td>@r.ProductCost</td>
+                 <td>@r.Image</td>
+                <td>@r.TypeProductId</td>
+                <td>@r.ManufactureId</td>
+
+                
+                
+                <td>
+                    <a asp-action="UpdateProducts" asp-route-id="@r.IdProduct">
+                        <img src="/png/edit.jpg" />
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteProducts" method="post">
+                        <input type="hidden" value="@r.IdProduct" name="IdProduct" />
+                        <input type="image" src="/png/del.jpg" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

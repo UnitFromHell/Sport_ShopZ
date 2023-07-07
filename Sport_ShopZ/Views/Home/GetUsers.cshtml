@@ -1,0 +1,45 @@
+﻿@model SportShopAPI.Models.User
+@{
+    Layout = "_Layout"; ViewBag.Title = "Get Users by Id";
+}
+
+<h2>Get Users by Id <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h2>
+<h3>@ViewBag.StatusCode</h3>
+<form asp-action="GetUsers" asp-controller="Home">
+    <div class="form-group">
+        <label for="id">Id:</label>
+        <input class="form-control" name="id" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Get User</button>
+    </div>
+</form>
+
+@if (Model != null)
+{
+    <h2>User</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+               <th>ID</th>
+                <th>FirstName</th>
+                <th>SecondName</th>
+                <th>MiddleName</th>
+                <th>PhoneNumber</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.IdUser</td>
+                <td>@Model.FirstNameUser</td>
+                <td>@Model.SecondNameUser</td>
+                <td>@Model.MiddleNameUser</td>
+                <td>@Model.PhoneNumber</td>
+                <td>@Model.Email</td>
+                <td>@Model.PasswordUser</td>
+            </tr>
+        </tbody>
+    </table>
+}

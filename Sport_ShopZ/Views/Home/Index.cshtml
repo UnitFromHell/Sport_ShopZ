@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SportShopAPI.Models.User>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout"; ViewBag.Title = "All Users";
+}
+
+<h2>Пользователи</h2>
+<a asp-action="AddUsers" class="btn btn-sm btn-primary">Добавить пользователя</a>
+<a asp-action="GetUsers" class="btn btn-sm btn-secondary">Получить пользователя</a>
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+             <th>ID</th>
+                <th>FirstName</th>
+                <th>SecondName</th>
+                <th>MiddleName</th>
+                <th>PhoneNumber</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Update</th>
+                <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                 <td>@r.IdUser</td>
+                <td>@r.FirstNameUser</td>
+                <td>@r.SecondNameUser</td>
+                <td>@r.MiddleNameUser</td>
+                <td>@r.PhoneNumber</td>
+                <td>@r.Email</td>
+                <td>@r.PasswordUser</td>
+                
+                <td>
+                    <a asp-action="UpdateUsers" asp-route-id="@r.IdUser">
+                        <img src="/png/edit.jpg" />
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteUsers" method="post">
+                        <input type="hidden" value="@r.IdUser" name="IdUser" />
+                        <input type="image" src="/png/del.jpg" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

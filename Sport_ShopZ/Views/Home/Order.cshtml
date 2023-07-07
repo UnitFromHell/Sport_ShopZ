@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SportShopAPI.Models.Order>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout"; ViewBag.Title = "All Orders";
+}
+
+<h2>Заказы</h2>
+<a asp-action="AddOrders" class="btn btn-sm btn-primary">Добавить заказ</a>
+<a asp-action="GetOrders" class="btn btn-sm btn-secondary">Получить заказ</a>
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+              <th>ID</th>
+                <th>OrderNumber</th>
+                <th>ProductId</th>
+                <th>UserId</th>
+                 <th>Update</th>
+                <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                 <td>@r.IdOrder</td>
+                <td>@r.OrderNumber</td>
+                <td>@r.ProductId</td>
+                <td>@r.UserId</td>
+                
+                <td>
+                    <a asp-action="UpdateOrders" asp-route-id="@r.IdOrder">
+                        <img src="/png/edit.jpg" />
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteOrders" method="post">
+                        <input type="hidden" value="@r.IdOrder" name="IdOrder" />
+                        <input type="image" src="/png/del.jpg" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

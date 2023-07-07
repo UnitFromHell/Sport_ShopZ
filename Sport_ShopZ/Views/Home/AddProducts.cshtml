@@ -1,0 +1,61 @@
+﻿@model SportShopAPI.Models.Product
+@{
+    Layout = "_Layout"; ViewBag.Title = "Add a Product";
+}
+
+<h2>Add a Product <a asp-action="Product" class="btn btn-sm btn-secondary">Back</a></h2>
+<form asp-action="AddProducts" method="post">
+    <div class="form-group">
+        <label for="Name">Product_Name:</label>
+        <input class="form-control" name="ProductName" />
+    </div>
+    <div class="form-group">
+        <label for="Name">Product_Cost:</label>
+        <input class="form-control" name="Product_Cost" />
+    </div>
+    <div class="form-group">
+        <label for="Name">Manufacture_Id:</label>
+        <input class="form-control" name="ManufactureId" />
+    </div>
+    <div class="form-group">
+        <label for="Name">Image:</label>
+        <input class="form-control" name="Image" />
+    </div>
+    <div class="form-group">
+        <label for="Name">TypeProduct_Id:</label>
+        <input class="form-control" name="TypeProductId" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Add</button>
+    </div>
+</form>
+
+<h3 class="alert">@ViewBag.Result</h3>
+
+@if (Model != null)
+{
+    <h2>Product</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ProductName</th>
+                <th>ProductTypeId</th>
+                <th>ManufactureId</th>
+                
+                <th>ProductCost</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.IdProduct</td>
+                <td>@Model.ProductName</td>
+                <td>@Model.TypeProductId</td>
+                <td>@Model.ManufactureId</td>
+                <td>@Model.ProductCost</td>
+                <td>@Model.Image</td>
+            </tr>
+        </tbody>
+    </table>
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SportShopAPI.Models.Manufacture>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout"; ViewBag.Title = "All Manufactures";
+}
+
+<h2>Производители</h2>
+<a asp-action="AddManufactues" class="btn btn-sm btn-primary">Добавить проиизводителя</a>
+<a asp-action="GetManufactures" class="btn btn-sm btn-secondary">Получить проиизводителя</a>
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+              <th>ID</th>
+                <th>Country</th>
+                <th>CompanyName</th>
+                 <th>Update</th>
+                <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                 <td>@r.IdManufacture</td>
+                <td>@r.Country</td>
+                <td>@r.CompanyName</td>
+                
+                
+                <td>
+                    <a asp-action="UpdateManufactures" asp-route-id="@r.IdManufacture">
+                        <img src="/png/edit.jpg" />
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteManufactures" method="post">
+                        <input type="hidden" value="@r.IdManufacture" name="IdManufacture" />
+                        <input type="image" src="/png/del.jpg" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
